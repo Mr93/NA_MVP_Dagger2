@@ -3,7 +3,7 @@ package com.designpattern.admin.designpattern.M.Object;
 /**
  * Created by Admin on 9/7/2016.
  */
-public class Data {
+public class DataModel {
     private String title;
     private String description;
     private String image;

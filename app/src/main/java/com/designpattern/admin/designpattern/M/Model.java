@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.designpattern.admin.designpattern.P.RequiredPresenterOps;
-import com.designpattern.admin.designpattern.M.Object.Data;
-import com.designpattern.admin.designpattern.M.Strategy.DataParser;
-import com.designpattern.admin.designpattern.M.Strategy.DataParserFactory;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
+import com.designpattern.admin.designpattern.M.Strategy.DataParserModel;
+import com.designpattern.admin.designpattern.M.Strategy.DataParserFactoryModel;
 import com.designpattern.admin.designpattern.M.Strategy.ParseDataCallback;
-import com.designpattern.admin.designpattern.M.Strategy.ThethaoDataParserFactory;
+import com.designpattern.admin.designpattern.M.Strategy.ThethaoDataParserFactoryModel;
 
 import java.util.List;
 
@@ -18,34 +18,34 @@ import java.util.List;
 public class Model implements ProvidedModelOps {
 
     private static final String TAG = Model.class.getSimpleName();
-    DataParserFactory factory;
+    DataParserFactoryModel factory;
     RequiredPresenterOps requiredPresenterOps;
-	List<Data> listData;
+	List<DataModel> listDataModel;
 
     public Model() {
-        this.factory = new ThethaoDataParserFactory();
+        this.factory = new ThethaoDataParserFactoryModel();
     }
 
     @Override
     public void presenterNeedDataFromNetwork(String domain, Activity context, RequiredPresenterOps inRequiredPresenterOps) {
         try {
             this.requiredPresenterOps = inRequiredPresenterOps;
-            DataParser dataParser = factory.createDataParser(domain, context);
-            dataParser.parse(new ParseDataCallback(this));
+            DataParserModel dataParserModel = factory.createDataParser(domain, context);
+            dataParserModel.parse(new ParseDataCallback(this));
         } catch (NullPointerException e) {
             Log.e(TAG, "presenterNeedDataFromNetwork: ", e);
         }
     }
 
 	@Override
-	public List<Data> getExistData() {
-		return listData;
+	public List<DataModel> getExistData() {
+		return listDataModel;
 	}
 
 
-	public void returnDataForPresenter(List<Data> dataList){
-	    listData = dataList;
-		Log.d(TAG, "returnDataForPresenter: " + listData.size());
-		requiredPresenterOps.getDataNetworkFromModel(dataList);
+	public void returnDataForPresenter(List<DataModel> dataModelList){
+	    listDataModel = dataModelList;
+		Log.d(TAG, "returnDataForPresenter: " + listDataModel.size());
+		requiredPresenterOps.getDataNetworkFromModel(dataModelList);
     }
 }

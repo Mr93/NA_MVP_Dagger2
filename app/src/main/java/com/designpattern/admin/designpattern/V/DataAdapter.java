@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.designpattern.admin.designpattern.M.Object.Data;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
 import com.designpattern.admin.designpattern.R;
 import com.loopj.android.image.SmartImageView;
 
@@ -19,17 +19,17 @@ import java.util.List;
 public class DataAdapter extends BaseAdapter {
     Context context;
     LayoutInflater inflater;
-    List<Data> data;
-    Data resultp = new Data();
+    List<DataModel> dataModel;
+    DataModel resultp = new DataModel();
 
-    public DataAdapter(Context context,List<Data> arraylist) {
+    public DataAdapter(Context context,List<DataModel> arraylist) {
         this.context = context;
-        data = arraylist;
+        dataModel = arraylist;
     }
 
     @Override
     public int getCount() {
-        return data.size();
+        return dataModel.size();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class DataAdapter extends BaseAdapter {
 	    TextView tv_Domain;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.item_listview, parent, false);
-        resultp = data.get(position);
+        resultp = dataModel.get(position);
         img_thumb = (SmartImageView) itemView.findViewById(R.id.img_thumb);
         tv_NgayDang = (TextView) itemView.findViewById(R.id.tv_NgayDang);
         tv_Title = (TextView) itemView.findViewById(R.id.tv_Title);

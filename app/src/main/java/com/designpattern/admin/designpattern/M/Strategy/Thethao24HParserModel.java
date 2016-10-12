@@ -6,7 +6,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.androidquery.util.XmlDom;
-import com.designpattern.admin.designpattern.M.Object.Data;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,23 +17,23 @@ import java.util.regex.Pattern;
  * Created by DucDt on 9/14/2016.
  */
 
-public class Thethao24hParser implements DataParser {
+public class Thethao24HParserModel implements DataParserModel {
 
-	private static final String TAG = Thethao24hParser.class.getSimpleName();
+	private static final String TAG = Thethao24HParserModel.class.getSimpleName();
 	private static final String MAIN_URL = "http://www.24h.com.vn/upload/rss/bongda.rss";
 	public static final String DOMAIN = "24h.com.vn";
 
-	private static Thethao24hParser instance;
+	private static Thethao24HParserModel instance;
 
 	private AQuery aQuery;
 
-	private Thethao24hParser(Activity context) {
+	private Thethao24HParserModel(Activity context) {
 		aQuery = new AQuery(context);
 	}
 
-	public static Thethao24hParser getInstance(Activity context) {
+	public static Thethao24HParserModel getInstance(Activity context) {
 		if (instance == null) {
-			instance = new Thethao24hParser(context);
+			instance = new Thethao24HParserModel(context);
 		}
 		return instance;
 	}
@@ -45,11 +45,11 @@ public class Thethao24hParser implements DataParser {
 			public void callback(String url, XmlDom xmlDom, AjaxStatus status) {
 				if (xmlDom != null) {
 					try {
-						List<Data> lstData = new ArrayList<>();
+						List<DataModel> lstDataModel = new ArrayList<>();
 						List<XmlDom> items = xmlDom.tags("item");
 						for (int i = 0; i < items.size(); i++) {
 							XmlDom item = items.get(i);
-							Data map = new Data();
+							DataModel map = new DataModel();
 							XmlDom title = item.child("title");
 							XmlDom description = item.child("description");
 							XmlDom link = item.child("link");
@@ -72,10 +72,10 @@ public class Thethao24hParser implements DataParser {
 							map.setLink(link_LienKet);
 							map.setPubDate(textNgayDang);
 							map.setDomain(DOMAIN);
-							lstData.add(map);
+							lstDataModel.add(map);
 						}
-						callback.onParseDataDone(lstData);
-						Log.d(TAG, "callback: list data  : " + lstData.size());
+						callback.onParseDataDone(lstDataModel);
+						Log.d(TAG, "callback: list data  : " + lstDataModel.size());
 					} catch (Exception e) {
 						Log.e(TAG, "callback: ", e);
 					}

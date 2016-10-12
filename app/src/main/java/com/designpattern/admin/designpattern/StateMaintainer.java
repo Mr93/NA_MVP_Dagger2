@@ -15,50 +15,42 @@ import java.util.HashMap;
 
 public class StateMaintainer {
 
-	private final int activityId;
 	protected final String TAG = getClass().getName();
 	private HashMap<Integer, ProvidedPresenterOps> dataState = new HashMap<>();
-	private ProvidedPresenterOps providedPresenterOps;
 	private static StateMaintainer instance;
 
-	private StateMaintainer(int activityId) {
-		this.activityId = activityId;
+	private StateMaintainer() {
+
 	}
 
-	public static StateMaintainer getInstance(int activityId){
-		if(instance == null){
-			instance = new StateMaintainer(activityId);
+	public static StateMaintainer getInstance() {
+		if (instance == null) {
+			instance = new StateMaintainer();
 		}
 		return instance;
 	}
 
 	//creates activity responsible to maintain the objects
-	public boolean firstTimeIn(){
+	public boolean firstTimeIn(int activityId) {
 		try {
-			providedPresenterOps = dataState.get(activityId);
-			if(providedPresenterOps == null){
+			ProvidedPresenterOps providedPresenterOps = dataState.get(activityId);
+			if (providedPresenterOps == null) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
-		}catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			Log.e(TAG, "firstTimeIn: ", e);
 			return false;
 		}
 	}
 
-	public void updateState(ProvidedPresenterOps providedPresenterOps){
+	public void updateState(int activityId, ProvidedPresenterOps providedPresenterOps) {
 		dataState.put(activityId, providedPresenterOps);
 	}
 
-	public ProvidedPresenterOps getState(){
-		return providedPresenterOps;
+	public ProvidedPresenterOps getState(int activityId) {
+		return dataState.get(activityId);
 	}
 
-
-
-	class DataStucture{
-		ProvidedPresenterOps providedPresenterOps;
-		//ProvidedModelOps providedModelOps;
-	}
 }

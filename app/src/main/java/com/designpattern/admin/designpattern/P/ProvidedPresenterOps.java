@@ -2,7 +2,6 @@ package com.designpattern.admin.designpattern.P;
 
 import android.app.Activity;
 
-import com.designpattern.admin.designpattern.M.Object.Data;
 import com.designpattern.admin.designpattern.V.RequiredViewOps;
 
 import java.util.List;

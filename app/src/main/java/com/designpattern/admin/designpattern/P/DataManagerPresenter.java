@@ -5,10 +5,9 @@ import android.util.Log;
 
 import com.designpattern.admin.designpattern.M.ProvidedModelOps;
 import com.designpattern.admin.designpattern.V.RequiredViewOps;
-import com.designpattern.admin.designpattern.M.Model;
-import com.designpattern.admin.designpattern.M.Object.Data;
-import com.designpattern.admin.designpattern.M.Strategy.Thethao247Parser;
-import com.designpattern.admin.designpattern.M.Strategy.Thethao24hParser;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
+import com.designpattern.admin.designpattern.M.Strategy.Thethao247ParserModel;
+import com.designpattern.admin.designpattern.M.Strategy.Thethao24HParserModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,8 +20,8 @@ import java.util.List;
 public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPresenterOps {
 	private static final List<String> domainList = new ArrayList<>(
 			Arrays.asList(
-					Thethao24hParser.DOMAIN,
-					Thethao247Parser.DOMAIN
+					Thethao24HParserModel.DOMAIN,
+					Thethao247ParserModel.DOMAIN
 			)
 	);
     private ProvidedModelOps modelMVP;
@@ -46,16 +45,16 @@ public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPrese
 	}
 
 
-	public void displayNewData(List<Data> dataList){
-		viewMVP.loadAdapterList(dataList);
+	public void displayNewData(List<DataModel> dataModelList){
+		viewMVP.loadAdapterList(dataModelList);
 	}
 
 	@Override
 	public void getExistData() {
-		List<Data> dataList = modelMVP.getExistData();
-		if(dataList != null && !dataList.isEmpty()){
-			Log.d(TAG, "getExistData: " + dataList.size());
-			displayNewData(dataList);
+		List<DataModel> dataModelList = modelMVP.getExistData();
+		if(dataModelList != null && !dataModelList.isEmpty()){
+			Log.d(TAG, "getExistData: " + dataModelList.size());
+			displayNewData(dataModelList);
 		}
 	}
 
@@ -73,7 +72,7 @@ public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPrese
                 getDataFromDomain(domain);
             }
         } else {
-            displayNewData(new ArrayList<Data>());
+            displayNewData(new ArrayList<DataModel>());
         }
 	}
 
@@ -84,7 +83,7 @@ public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPrese
 	}
 
 	@Override
-    public void getDataNetworkFromModel(List<Data> dataList) {
-        viewMVP.loadAdapterList(dataList);
+    public void getDataNetworkFromModel(List<DataModel> dataModelList) {
+        viewMVP.loadAdapterList(dataModelList);
     }
 }

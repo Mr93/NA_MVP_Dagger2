@@ -19,8 +19,8 @@ public class PresenterModule {
     private ProvidedPresenterOps providedPresenterOps;
 
     public PresenterModule(RequiredViewOps requiredViewOps, Activity activity){
-        this.providedPresenterOps = new DataManagerPresenter(requiredViewOps, activity);
-        ((DataManagerPresenter)this.providedPresenterOps).setModelMVP(new Model());
+        providedPresenterOps = new DataManagerPresenter(requiredViewOps, activity);
+        ((DataManagerPresenter)providedPresenterOps).setModelMVP(new Model());
     }
 
     @Provides @Singleton public ProvidedPresenterOps providePresenterForView(){

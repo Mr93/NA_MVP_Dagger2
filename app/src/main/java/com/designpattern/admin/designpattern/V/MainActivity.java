@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import com.designpattern.admin.designpattern.MyApp;
 import com.designpattern.admin.designpattern.P.ProvidedPresenterOps;
-import com.designpattern.admin.designpattern.M.Object.Data;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
 import com.designpattern.admin.designpattern.R;
 import com.designpattern.admin.designpattern.StateMaintainer;
 import com.guna.libmultispinner.MultiSelectionSpinner;
@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
 
     private void setupMvp(){
 	    Log.d(TAG, "setupMvp: " + stateMaintainer);
-	    stateMaintainer = StateMaintainer.getInstance(R.layout.activity_main);
-	    if(stateMaintainer.firstTimeIn()){
+	    stateMaintainer = StateMaintainer.getInstance();
+	    if(stateMaintainer.firstTimeIn(R.layout.activity_main)){
 	        ((MyApp) getApplication()).createPresenterComponent(this, this);
 	        ((MyApp) getApplication()).getPresenterComponent().inject(this);
-	        stateMaintainer.updateState(presenter);
+	        stateMaintainer.updateState(R.layout.activity_main , presenter);
         }else {
-	        presenter = stateMaintainer.getState();
+	        presenter = stateMaintainer.getState(R.layout.activity_main);
 		    presenter.setView(this,this);
 		    Log.d(TAG, "setupMvp: " + presenter);
 	    }
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
 	protected void onStop() {
 		Log.d(TAG, "onStop: ");
 		super.onStop();
-		stateMaintainer.updateState(presenter);
+		stateMaintainer.updateState(R.layout.activity_main, presenter);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
         if (strings != null && !strings.isEmpty()) {
             presenter.getDataFromNetwork(strings);
         } else {
-            loadAdapterList(new ArrayList<Data>());
+            loadAdapterList(new ArrayList<DataModel>());
         }
     }
 
@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
     }
 
     @Override
-    public void loadAdapterList(List<Data> listData) {
+    public void loadAdapterList(List<DataModel> listDataModel) {
         Log.d(TAG, "loadAdapterList: ");
-        dataAdapter = new DataAdapter(this, listData);
+        dataAdapter = new DataAdapter(this, listDataModel);
         listView.setAdapter(dataAdapter);
         dataAdapter.notifyDataSetChanged();
     }

@@ -1,7 +1,7 @@
 package com.designpattern.admin.designpattern.M.Strategy;
 
 import com.designpattern.admin.designpattern.M.Model;
-import com.designpattern.admin.designpattern.M.Object.Data;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class ParseDataCallback {
 		this.model = model;
 	}
 
-	public void onParseDataDone(List<Data> dataList){
-		model.returnDataForPresenter(dataList);
+	public void onParseDataDone(List<DataModel> dataModelList){
+		model.returnDataForPresenter(dataModelList);
 	}
 }

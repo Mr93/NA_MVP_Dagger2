@@ -2,7 +2,7 @@ package com.designpattern.admin.designpattern.M;
 
 import android.app.Activity;
 
-import com.designpattern.admin.designpattern.M.Object.Data;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
 import com.designpattern.admin.designpattern.P.RequiredPresenterOps;
 
 import java.util.List;
@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface ProvidedModelOps {
     void presenterNeedDataFromNetwork(String domain, Activity context, RequiredPresenterOps inRequiredPresenterOps);
-    List<Data> getExistData();
+    List<DataModel> getExistData();
 }

@@ -1,6 +1,6 @@
 package com.designpattern.admin.designpattern.V;
 
-import com.designpattern.admin.designpattern.M.Object.Data;
+import com.designpattern.admin.designpattern.M.Object.DataModel;
 
 import java.util.List;
 
@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface RequiredViewOps {
     void loadDomainList(List<String> domains, List<String> selection);
-    void loadAdapterList(List<Data> listData);
+    void loadAdapterList(List<DataModel> listDataModel);
 }
 
