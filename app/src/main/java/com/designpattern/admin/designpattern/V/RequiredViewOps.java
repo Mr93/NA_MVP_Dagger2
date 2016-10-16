@@ -1,5 +1,7 @@
 package com.designpattern.admin.designpattern.V;
 
+import android.app.Activity;
+
 import com.designpattern.admin.designpattern.M.Object.DataModel;
 
 import java.util.List;
@@ -10,5 +12,6 @@ import java.util.List;
 public interface RequiredViewOps {
     void loadDomainList(List<String> domains, List<String> selection);
     void loadAdapterList(List<DataModel> listDataModel);
+    Activity returnActivity();
 }
 

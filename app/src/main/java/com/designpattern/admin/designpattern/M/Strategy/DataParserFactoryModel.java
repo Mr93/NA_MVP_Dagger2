@@ -7,5 +7,5 @@ import android.app.Activity;
  */
 
 public interface DataParserFactoryModel {
-    DataParserModel createDataParser(String domain, Activity context);
+    DataParserModel createDataParser(String domain, Activity activity);
 }

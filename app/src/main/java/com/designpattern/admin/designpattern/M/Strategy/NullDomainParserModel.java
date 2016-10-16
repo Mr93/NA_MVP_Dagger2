@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class NullDomainParserModel implements DataParserModel {
 
-	private static final String TAG = NullDomainParserModel.class.getSimpleName();
+	private static final String TAG = NullDomainParserModel.class.getName();
 
 	private static NullDomainParserModel instance;
 

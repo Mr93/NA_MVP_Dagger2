@@ -26,22 +26,26 @@ public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPrese
 	);
     private ProvidedModelOps modelMVP;
     private RequiredViewOps viewMVP;
-    private static final String TAG = DataManagerPresenter.class.getSimpleName();
-    private Activity context;
+    private static final String TAG = DataManagerPresenter.class.getName();
 	private List<String> currentList = new ArrayList<>();
 
-	public DataManagerPresenter(RequiredViewOps requiredViewOps, Activity activity) {
-		this.context = activity;
-		this.viewMVP = requiredViewOps;
+	public DataManagerPresenter() {
 		currentList.add(domainList.get(0));
 	}
 
+	@Override
 	public void setModelMVP(ProvidedModelOps providedModelOps){
 		this.modelMVP = providedModelOps;
 	}
 
+	@Override
+	public void setPreViewState(RequiredViewOps requiredViewOps) {
+		setView(requiredViewOps);
+		getExistData();
+	}
+
 	private void getDataFromDomain(String domain) {
-        modelMVP.presenterNeedDataFromNetwork(domain, context, this);
+        modelMVP.presenterNeedDataFromNetwork(domain, viewMVP.returnActivity(), this);
 	}
 
 
@@ -77,8 +81,7 @@ public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPrese
 	}
 
 	@Override
-	public void setView(RequiredViewOps requiredViewOps, Activity activity) {
-		this.context = activity;
+	public void setView(RequiredViewOps requiredViewOps) {
 		this.viewMVP = requiredViewOps;
 	}
 

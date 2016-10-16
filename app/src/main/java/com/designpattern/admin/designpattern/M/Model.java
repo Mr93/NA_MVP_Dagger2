@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class Model implements ProvidedModelOps {
 
-    private static final String TAG = Model.class.getSimpleName();
+    private static final String TAG = Model.class.getName();
     DataParserFactoryModel factory;
     RequiredPresenterOps requiredPresenterOps;
 	List<DataModel> listDataModel;
@@ -27,10 +27,10 @@ public class Model implements ProvidedModelOps {
     }
 
     @Override
-    public void presenterNeedDataFromNetwork(String domain, Activity context, RequiredPresenterOps inRequiredPresenterOps) {
+    public void presenterNeedDataFromNetwork(String domain, Activity activity, RequiredPresenterOps inRequiredPresenterOps) {
         try {
             this.requiredPresenterOps = inRequiredPresenterOps;
-            DataParserModel dataParserModel = factory.createDataParser(domain, context);
+            DataParserModel dataParserModel = factory.createDataParser(domain, activity);
             dataParserModel.parse(new ParseDataCallback(this));
         } catch (NullPointerException e) {
             Log.e(TAG, "presenterNeedDataFromNetwork: ", e);

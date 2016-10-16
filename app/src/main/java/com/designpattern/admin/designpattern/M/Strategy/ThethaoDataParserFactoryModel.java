@@ -9,11 +9,11 @@ import android.app.Activity;
 public class ThethaoDataParserFactoryModel implements DataParserFactoryModel {
 
 	@Override
-	public DataParserModel createDataParser(String domain, Activity context) {
+	public DataParserModel createDataParser(String domain, Activity activity) {
 		if (domain.contains(Thethao24HParserModel.DOMAIN)) {
-			return Thethao24HParserModel.getInstance(context);
+			return Thethao24HParserModel.getInstance(activity);
 		} else if (domain.contains(Thethao247ParserModel.DOMAIN)) {
-			return Thethao247ParserModel.getInstance(context);
+			return Thethao247ParserModel.getInstance(activity);
 		}
 		return NullDomainParserModel.getInstance();
 	}

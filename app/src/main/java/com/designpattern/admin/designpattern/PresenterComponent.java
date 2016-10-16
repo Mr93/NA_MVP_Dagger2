@@ -14,5 +14,4 @@ import dagger.Component;
 @Singleton
 @Component(modules = {PresenterModule.class})
 public interface PresenterComponent {
-    void inject(MainActivity activity);
 }

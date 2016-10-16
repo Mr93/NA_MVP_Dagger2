@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class Thethao24HParserModel implements DataParserModel {
 
-	private static final String TAG = Thethao24HParserModel.class.getSimpleName();
+	private static final String TAG = Thethao24HParserModel.class.getName();
 	private static final String MAIN_URL = "http://www.24h.com.vn/upload/rss/bongda.rss";
 	public static final String DOMAIN = "24h.com.vn";
 

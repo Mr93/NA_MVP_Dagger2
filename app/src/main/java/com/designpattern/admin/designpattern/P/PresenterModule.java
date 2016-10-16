@@ -18,9 +18,10 @@ import dagger.Provides;
 public class PresenterModule {
     private ProvidedPresenterOps providedPresenterOps;
 
-    public PresenterModule(RequiredViewOps requiredViewOps, Activity activity){
-        providedPresenterOps = new DataManagerPresenter(requiredViewOps, activity);
-        ((DataManagerPresenter)providedPresenterOps).setModelMVP(new Model());
+    public PresenterModule(RequiredViewOps requiredViewOps){
+        providedPresenterOps = new DataManagerPresenter();
+        providedPresenterOps.setView(requiredViewOps);
+        providedPresenterOps.setModelMVP(new Model());
     }
 
     @Provides @Singleton public ProvidedPresenterOps providePresenterForView(){

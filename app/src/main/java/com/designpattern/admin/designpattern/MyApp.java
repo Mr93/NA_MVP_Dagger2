@@ -19,9 +19,9 @@ public class MyApp extends Application {
         super.onCreate();
     }
 
-    public void createPresenterComponent(RequiredViewOps requiredViewOps, Activity activity){
+    public void createPresenterComponent(RequiredViewOps requiredViewOps){
         presenterComponent = DaggerPresenterComponent.builder()
-                .presenterModule(new PresenterModule(requiredViewOps, activity))
+                .presenterModule(new PresenterModule(requiredViewOps))
                 .build();
     }
 

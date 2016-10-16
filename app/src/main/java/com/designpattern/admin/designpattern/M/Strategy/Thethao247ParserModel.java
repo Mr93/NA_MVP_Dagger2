@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Thethao247ParserModel implements DataParserModel {
 
-    private static final String TAG = Thethao247ParserModel.class.getSimpleName();
+    private static final String TAG = Thethao247ParserModel.class.getName();
     private static final String URL = "http://thethao247.vn/home.rss";
     public static final String DOMAIN = "thethao247.vn";
 

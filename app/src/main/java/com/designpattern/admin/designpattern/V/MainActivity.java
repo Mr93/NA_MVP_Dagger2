@@ -1,5 +1,7 @@
 package com.designpattern.admin.designpattern.V;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,12 +21,14 @@ import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MultiSelectionSpinner.OnMultipleItemsSelectedListener, RequiredViewOps {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getName();
 
     private ListView listView;
     private DataAdapter dataAdapter;
     @Inject
     ProvidedPresenterOps presenter;
+	@Inject
+	Context context;
     StateMaintainer stateMaintainer;
 
     @Override
@@ -32,27 +36,26 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
         super.onCreate(savedInstanceState);
 	    Log.d(TAG, "onCreate: ");
 	    setContentView(R.layout.activity_main);
-        setupMvp();
-        //setup multiple dropdown list
-        setupMultipleDropdownList();
+	    listView = (ListView) findViewById(R.id.listView);
+
+	    //setup multiple dropdown list
     }
 
     private void setupMvp(){
 	    Log.d(TAG, "setupMvp: " + stateMaintainer);
 	    stateMaintainer = StateMaintainer.getInstance();
 	    if(stateMaintainer.firstTimeIn(R.layout.activity_main)){
-	        ((MyApp) getApplication()).createPresenterComponent(this, this);
+	        ((MyApp) getApplication()).createPresenterComponent(this);
 	        ((MyApp) getApplication()).getPresenterComponent().inject(this);
 	        stateMaintainer.updateState(R.layout.activity_main , presenter);
         }else {
 	        presenter = stateMaintainer.getState(R.layout.activity_main);
-		    presenter.setView(this,this);
+		    presenter.setPreViewState(this);
 		    Log.d(TAG, "setupMvp: " + presenter);
 	    }
     }
 
     private void setupMultipleDropdownList() {
-        listView = (ListView) findViewById(R.id.listView);
         presenter.getDomainList();
     }
 
@@ -60,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
 	protected void onStart() {
 		Log.d(TAG, "onStart: ");
 		super.onStart();
-		presenter.getExistData();
+		setupMvp();
+		setupMultipleDropdownList();
 	}
 
 	@Override
@@ -102,4 +106,9 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
         listView.setAdapter(dataAdapter);
         dataAdapter.notifyDataSetChanged();
     }
+
+	@Override
+	public Activity returnActivity() {
+		return this;
+	}
 }
