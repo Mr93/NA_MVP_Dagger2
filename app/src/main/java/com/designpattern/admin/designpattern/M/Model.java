@@ -1,6 +1,7 @@
 package com.designpattern.admin.designpattern.M;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.designpattern.admin.designpattern.P.RequiredPresenterOps;
@@ -27,7 +28,7 @@ public class Model implements ProvidedModelOps {
     }
 
     @Override
-    public void presenterNeedDataFromNetwork(String domain, Activity activity, RequiredPresenterOps inRequiredPresenterOps) {
+    public void presenterNeedDataFromNetwork(String domain, Context activity, RequiredPresenterOps inRequiredPresenterOps) {
         try {
             this.requiredPresenterOps = inRequiredPresenterOps;
             DataParserModel dataParserModel = factory.createDataParser(domain, activity);

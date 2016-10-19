@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
 	    Log.d(TAG, "setupMvp: " + stateMaintainer);
 	    stateMaintainer = StateMaintainer.getInstance();
 	    if(stateMaintainer.firstTimeIn(R.layout.activity_main)){
-	        ((MyApp) getApplication()).createPresenterComponent(this);
-	        ((MyApp) getApplication()).getPresenterComponent().inject(this);
-	        stateMaintainer.updateState(R.layout.activity_main , presenter);
-        }else {
+		    ((MyApp) getApplication()).createComponents(this);
+		    ((MyApp) getApplication()).getContextComponent().inject(this);
+		    //stateMaintainer.updateState(R.layout.activity_main , presenter, context);
+	    } else {
 	        presenter = stateMaintainer.getState(R.layout.activity_main);
 		    presenter.setPreViewState(this);
 		    Log.d(TAG, "setupMvp: " + presenter);
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements MultiSelectionSpi
     }
 
 	@Override
-	public Activity returnActivity() {
-		return this;
+	public Context returnContext() {
+		return context;
 	}
 }

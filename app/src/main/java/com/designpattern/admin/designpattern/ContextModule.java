@@ -1,6 +1,9 @@
 package com.designpattern.admin.designpattern;
 
 import android.content.Context;
+import android.util.Log;
+
+import com.designpattern.admin.designpattern.V.DataAdapter;
 
 import javax.inject.Singleton;
 
@@ -19,7 +22,9 @@ public class ContextModule {
 		this.context = context;
 	}
 
-	@Provides@Singleton public Context provideContext(){
+	@Provides
+	@ContextScope
+	public Context provideContext() {
 		return context;
 	}
 }

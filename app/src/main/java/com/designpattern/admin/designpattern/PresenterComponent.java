@@ -1,6 +1,10 @@
 package com.designpattern.admin.designpattern;
 
+import android.content.Context;
+
 import com.designpattern.admin.designpattern.P.PresenterModule;
+import com.designpattern.admin.designpattern.P.ProvidedPresenterOps;
+import com.designpattern.admin.designpattern.V.DataAdapter;
 import com.designpattern.admin.designpattern.V.MainActivity;
 
 import javax.inject.Singleton;
@@ -14,4 +18,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {PresenterModule.class})
 public interface PresenterComponent {
+	ProvidedPresenterOps presenter();
+	//Context context();
+	//Context context();
 }

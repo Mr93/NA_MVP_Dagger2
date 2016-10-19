@@ -1,6 +1,7 @@
 package com.designpattern.admin.designpattern;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.designpattern.admin.designpattern.M.ProvidedModelOps;

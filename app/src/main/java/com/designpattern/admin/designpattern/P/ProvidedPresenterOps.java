@@ -1,6 +1,7 @@
 package com.designpattern.admin.designpattern.P;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.designpattern.admin.designpattern.M.ProvidedModelOps;
 import com.designpattern.admin.designpattern.V.RequiredViewOps;

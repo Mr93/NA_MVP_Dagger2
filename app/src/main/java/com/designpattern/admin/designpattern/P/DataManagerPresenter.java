@@ -1,6 +1,6 @@
 package com.designpattern.admin.designpattern.P;
 
-import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.designpattern.admin.designpattern.M.ProvidedModelOps;
@@ -45,7 +45,7 @@ public class DataManagerPresenter implements ProvidedPresenterOps, RequiredPrese
 	}
 
 	private void getDataFromDomain(String domain) {
-        modelMVP.presenterNeedDataFromNetwork(domain, viewMVP.returnActivity(), this);
+		modelMVP.presenterNeedDataFromNetwork(domain, viewMVP.returnContext(), this);
 	}
 
 

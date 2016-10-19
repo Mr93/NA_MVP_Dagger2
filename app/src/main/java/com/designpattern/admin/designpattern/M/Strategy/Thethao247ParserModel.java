@@ -1,6 +1,7 @@
 package com.designpattern.admin.designpattern.M.Strategy;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.androidquery.AQuery;
@@ -26,12 +27,11 @@ public class Thethao247ParserModel implements DataParserModel {
 
     AQuery aQuery;
 
-    private Thethao247ParserModel(Activity context) {
+    private Thethao247ParserModel(Context context) {
         aQuery = new AQuery(context);
-
     }
 
-    public static Thethao247ParserModel getInstance(Activity context) {
+    public static Thethao247ParserModel getInstance(Context context) {
         if (instance == null) {
             instance = new Thethao247ParserModel(context);
         }
